@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Se connecter</title>
-</head>
-<body>
+
+<?php
+$title = 'Se connecter';
+?>
+<?php ob_start(); ?>
+
 <form method="post" action="controleurConnection.php">
     <p>
         <label for="pseudo">Votre Pseudo</label><input type="text" name="pseudo" id="pseudo" value="<?php if( isset($_COOKIE['pseudo']) ){echo $_COOKIE['pseudo'];} ?>"  />
@@ -28,5 +27,7 @@
     }
     ?>
 </form>
-</body>
-</html>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

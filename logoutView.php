@@ -1,11 +1,8 @@
+<?php
+$title = 'Se déconnecter';
+?>
+<?php ob_start(); ?>
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Se déconnecter</title>
-    </head>
-    <body>
     <form method="post" action="controleurLogout.php">
 
         <p>
@@ -14,8 +11,8 @@
         </p>
 
     </form>
-    </body>
-    </html>
 
 
+<?php $content = ob_get_clean(); ?>
 
+<?php require('template.php'); ?>
