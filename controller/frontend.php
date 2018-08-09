@@ -1,10 +1,54 @@
 <?php
 
 require('model/frontend.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
+
+use \OpenClassrooms\Blog\Model\PostManager;
+use \OpenClassrooms\Blog\Model\CommentManager;
+
+// Chargement des classes
+
+function listPosts()
+{
+    $postManager = new PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+
+    require('view/frontend/listPostsView.php');
+}
+
+function post()
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
+
+    require('view/frontend/postView.php');
+}
+
+function addComment($postId, $author, $comment)
+{
+    $commentManager = new CommentManager();
+
+    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: controleurRegistration.php?action=post&id=' . $postId);
+    }
+}
 
 function registration(){
 
-    if ( isset ($_POST) && !empty($_POST)) {
+    if ( isset ($_POST) && !empty($_POST)){
+
+        //exemple(utiliser directement nettoye?
+        $post_pseudo = htmlspecialchars($_POST['pseudo']);
+
         $user = getUser();
 
         $errorCounter = 0;
@@ -12,11 +56,13 @@ function registration(){
         if ( $user->rowCount() === 0 ) {
             echo 'on peut ajouter pseudo';
         } else {
+
             echo 'On a deja ce pseudo';
             $errorCounter++;
+
         }
 
-        if( strlen( $_POST['password'] ) < 6 ){
+        if( strlen( htmlspecialchars($_POST['password'] )) < 6 ){
 
             echo 'Mdp trop court,  il faut au moins 6 chars...';
             $errorCounter++;
@@ -30,9 +76,11 @@ function registration(){
 
 //    if(1 !== preg_match("#^[a-z]||[0-9]@*\.#", $_POST['email'])){
         if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)=== false) {
+
             echo 'ecriture email fausse';
             $errorCounter++;
         }
+
         if ( $errorCounter === 0) {
 
             $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -40,6 +88,7 @@ function registration(){
             registerUser();
 
         }
+
     } else {
 
         require('view/frontend/registrationView.php');
@@ -49,7 +98,7 @@ function registration(){
 
 function connection(){
 
-    if ( isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']) ) {
+    if ( isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']) ){
 
     echo $_COOKIE['pseudo'] .'     '. $_COOKIE['pass'].'<br><br>';
 
@@ -66,17 +115,17 @@ function connection(){
 
     $errorCounter = 0;
 
-    if (!isset($_POST['pseudo']) || empty($_POST['pseudo'])) {
+    if (!isset($_POST['pseudo']) || empty($_POST['pseudo'])){
         echo 'Pseudo manquant!';
         $errorCounter++;
     }
 
-    if (!isset($_POST['password']) || empty($_POST['password'])) {
+    if (!isset($_POST['password']) || empty($_POST['password'])){
         echo 'Pwd manquant!';
         $errorCounter++;
     }
 
-    if ($errorCounter === 0) {
+    if ($errorCounter === 0){
 
         $res = userConnect();
 
@@ -130,3 +179,5 @@ function logout(){
         require('view/frontend/logoutView.php');
     }
 }
+
+

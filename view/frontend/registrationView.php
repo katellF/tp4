@@ -1,6 +1,6 @@
 <?php
 var_dump($_POST);
-if ( isset ($_POST) && empty($_POST)) {
+if ( isset ($_POST) && empty($_POST)){
     echo "premier chargement";
 }
 ?>
