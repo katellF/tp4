@@ -15,7 +15,7 @@ if ( isset ($_POST) && empty($_POST)) {
         <title>Inscription</title>
     </head>
     <body>
-    <form method="post" action="index.php">
+    <form method="post" action="controleurRegistration.php">
 
         <p>
             <label for="pseudo">Votre Pseudo</label><input type="text" name="pseudo" id="pseudo"  value="<?php if( isset($_POST['pseudo'])){ echo $_POST['pseudo'];} ?>"  required/>
