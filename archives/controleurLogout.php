@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('model.php');
+require('frontend.php');
 
 
 if ( isset( $_POST['action'] ) && $_POST['action'] === "logout" )

@@ -4,7 +4,7 @@ $title = 'Se connecter';
 ?>
 <?php ob_start(); ?>
 
-<form method="post" action="controleurConnection.php">
+<form method="post" action="index.php?action=connection">
     <p>
         <label for="pseudo">Votre Pseudo</label><input type="text" name="pseudo" id="pseudo" value="<?php if( isset($_COOKIE['pseudo']) ){echo $_COOKIE['pseudo'];} ?>"  />
     </p>

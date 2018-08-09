@@ -1,6 +1,6 @@
 <?php
-
-require('controller.php');
+session_start();
+require('controller/frontend.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'registration') {

@@ -11,7 +11,7 @@ if ( isset ($_POST) && empty($_POST)) {
 <?php ob_start(); ?>
 
 
-    <form method="post" action="controleurRegistration.php">
+    <form method="post" action="index.php?action=registration">
 
         <p>
             <label for="pseudo">Votre Pseudo</label><input type="text" name="pseudo" id="pseudo"  value="<?php if( isset($_POST['pseudo'])){ echo $_POST['pseudo'];} ?>"  required/>

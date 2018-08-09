@@ -1,6 +1,6 @@
 <?php
 
-require('model.php');
+require('model/frontend.php');
 
 function registration(){
 
@@ -42,7 +42,7 @@ function registration(){
         }
     } else {
 
-        require('registrationView.php');
+        require('view/frontend/registrationView.php');
 
     }
 }
@@ -101,12 +101,14 @@ function connection(){
     }
 }
 
-require('connectionView.php');
+require('view/frontend/connectionView.php');
 
 
 }
 
 function logout(){
+
+    var_dump($_SESSION);
 
     if ( isset( $_POST['action'] ) && $_POST['action'] === "logout" )
     {
@@ -118,15 +120,13 @@ function logout(){
         echo 'Bonjour ' . $_SESSION['pseudo'];
     }
 
-    var_dump($_POST);
-    var_dump($_SESSION);
 
     if (empty($_SESSION))
     {
         echo'Aurevoir et à bientôt! ';
-        exit;
+
     } else
     {
-        require('logoutView.php');
+        require('view/frontend/logoutView.php');
     }
 }

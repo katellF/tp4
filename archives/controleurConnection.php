@@ -1,5 +1,5 @@
 <?php
-require('model.php');
+require('frontend.php');
 
 if ( isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']) ) {
 

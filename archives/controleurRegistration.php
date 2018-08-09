@@ -1,5 +1,5 @@
 <?php
-require('model.php');
+require('frontend.php');
 var_dump($_POST);
 
 if ( isset ($_POST) && !empty($_POST)) {

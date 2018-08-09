@@ -3,7 +3,7 @@ $title = 'Se déconnecter';
 ?>
 <?php ob_start(); ?>
 
-    <form method="post" action="controleurLogout.php">
+    <form method="post" action="index.php?action=logout">
 
         <p>
             <input type="hidden" name="action" value="logout"/>
