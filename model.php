@@ -79,7 +79,7 @@ function userConnect(){
     return $resultat;
 }
 
-function logout(){
+function getLogout(){
 
     // Suppression des variables de session et de la session
     $_SESSION = array();

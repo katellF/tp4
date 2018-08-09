@@ -5,7 +5,7 @@ require('model.php');
 
 if ( isset( $_POST['action'] ) && $_POST['action'] === "logout" )
 {
-    logout();
+    getLogout();
 }
 
 if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
