@@ -11,12 +11,7 @@ function getUser() {
 
     var_dump($_POST);
 
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
-
+    $bdd = dbConnect();
 
     $req = $bdd->prepare('SELECT id FROM members WHERE pseudo = :pseudo');
     $req->execute(array(
@@ -30,11 +25,9 @@ function registerUser()
 {
 
     var_dump($_POST);
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+
+    $bdd = dbConnect();
+
     // Insertion
         $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $req = $bdd->prepare('INSERT INTO members(pseudo, pass, email, registration_date) VALUES(:pseudo, :pass, :email, CURDATE())');
@@ -55,11 +48,7 @@ function connectionAuto(){
 
     var_dump($_POST);
 
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+    $bdd = dbConnect();
 
     // controle pour connexion automatique....
     $req = $bdd->prepare("SELECT id, pass FROM members WHERE pseudo = :pseudo AND pass = :pass");
@@ -77,11 +66,7 @@ function connectionAuto(){
 
 function userConnect(){
 
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+    $bdd = dbConnect();
 
     $req = $bdd->prepare("SELECT id, pass FROM members WHERE pseudo = :pseudo");
     $res = $req->execute(array(
@@ -103,5 +88,17 @@ function logout(){
     // Suppression des cookies de connexion automatique
     setcookie('pseudo', '');
     setcookie('pass', '');
+}
+
+function dbConnect()
+{
+    try
+    {
+        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
+        return $bdd;
+    } catch (Exception $e)
+    {
+        die('Erreur : ' . $e->getMessage());
+    }
 }
 
