@@ -3,18 +3,14 @@ var_dump($_POST);
 if ( isset ($_POST) && empty($_POST)) {
     echo "premier chargement";
 }
-
-
-
 ?>
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Inscription</title>
-    </head>
-    <body>
+<?php
+     $title = 'Inscription';
+?>
+<?php ob_start(); ?>
+
+
     <form method="post" action="controleurRegistration.php">
 
         <p>
@@ -38,8 +34,7 @@ if ( isset ($_POST) && empty($_POST)) {
         </p>
 
     </form>
-    </body>
-    </html>
 
-<?php
+<?php $content = ob_get_clean(); ?>
 
+<?php require('template.php'); ?>
