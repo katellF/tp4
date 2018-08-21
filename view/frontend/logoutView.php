@@ -1,6 +1,7 @@
 <?php
 
 $this->title = 'Se déconnecter';
+
 ?>
 
 

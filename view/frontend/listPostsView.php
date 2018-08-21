@@ -1,7 +1,6 @@
 <?php $this->title = 'Mon blog';
 
 session_start();
-var_dump($this);
 ?>
 
     <h1>Mon super blog !</h1>

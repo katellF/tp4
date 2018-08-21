@@ -2,6 +2,7 @@
 
 require_once "model/PostManager.php";
 require_once "model/CommentManager.php";
+require_once "model/UserManager.php";
 require_once('view/frontend/View.php');
 
 
@@ -16,6 +17,7 @@ class ControllerPost
     public function __construct()
     {
         $this->ctrlConnect = new ControllerConnect();
+
     }
 
 
@@ -43,8 +45,9 @@ class ControllerPost
     function addPost()
     {
         if (isset ($_POST) && !empty($_POST)) {
-            if(isUserConnected()) {
-                insertPost();
+            if($this->ctrlConnect->isUserConnected()) {
+                $postManager = new PostManager();
+                $postManager->insertPost();
             }
             else{
 

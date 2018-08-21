@@ -2,6 +2,7 @@
 <?php
 
 $this->title = 'Se connecter';
+
 ?>
 
 

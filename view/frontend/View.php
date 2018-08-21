@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: katell
- * Date: 8/21/18
- * Time: 2:15 PM
- */
 
 class View
 {

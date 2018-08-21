@@ -1,18 +1,28 @@
 <?php
 require_once "model/PostManager.php";
 require_once "model/CommentManager.php";
+require_once "model/UserManager.php";
 require_once('view/frontend/View.php');
 
+use \OpenClassrooms\Blog\model\UserManager;
 
 class ControllerConnect
 {
+    private $UserConnect;
+
+    public function __construct()
+    {
+        $this->UserConnect = new UserManager();
+
+    }
+
     function registration(){
 
         if ( isset ($_POST) && !empty($_POST)){
 
             $post_pseudo = htmlspecialchars($_POST['pseudo']);
 
-            $user = getUser();
+            $user = $this->UserConnect->getUser();
 
             $errorCounter = 0;
 
@@ -48,7 +58,7 @@ class ControllerConnect
 
                 $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                registerUser();
+               $this->UserConnect->registerUser();
 
             }
 
@@ -66,7 +76,7 @@ class ControllerConnect
             echo $_COOKIE['pseudo'] .'     '. $_COOKIE['pass'].'<br><br>';
 
 //$resultat = $req->fetch();
-            if( connectionAuto() == true){
+            if( $this->UserConnect->connectionAuto() == true){
 
                 echo"Vous etes connectés";
                 exit;
@@ -90,7 +100,7 @@ class ControllerConnect
 
             if ($errorCounter === 0){
 
-                $res = userConnect();
+                $res = $this->UserConnect->userConnect();
 
                 $isPasswordCorrect = password_verify($_POST['password'], $res['pass']);
                 if (!$res) {
@@ -121,11 +131,10 @@ class ControllerConnect
     function logout(){
 
         session_start();
-        var_dump($_SESSION);
 
         if ( isset( $_POST['action'] ) && $_POST['action'] === "logout" )
         {
-            getLogout();
+            $this->UserConnect->getLogout();
         }
 
         if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))

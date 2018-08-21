@@ -1,4 +1,6 @@
-<?php $this->title = htmlspecialchars($post['title']); ?>
+<?php $this->title = htmlspecialchars($post['title']);
+session_start();
+?>
 
 
 <h1>Mon super blog !</h1>

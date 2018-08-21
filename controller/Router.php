@@ -29,18 +29,18 @@ class Router
                     $this->ctrlConnect->registration();
                     $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'connection') {
-                    connection();
-                    isUserConnected();
+                    $this->ctrlConnect->connection();
+                    $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'logout') {
-                    logout();
-                    isUserConnected();
+                    $this->ctrlConnect->logout();
+                    $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'listPosts') {
-                    listPosts();
-                    isUserConnected();
+                    $this->ctrlConnect->listPosts();
+                    $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'post') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
-                        post();
-                        isUserConnected();
+                        $this->ctrlPost->post();
+                        $this->ctrlConnect->isUserConnected();
                     } else {
                         // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
                         throw new Exception('Aucun identifiant de billet envoyé');
@@ -48,8 +48,8 @@ class Router
                 } elseif ($_GET['action'] == 'addComment') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                            addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-                            isUserConnected();
+                            $this->ctrlComment->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                            $this->ctrlConnect->isUserConnected();
                         } else {
                             // Autre exception
                             throw new Exception('Tous les champs ne sont pas remplis !');
@@ -60,8 +60,8 @@ class Router
                     }
                 } elseif ($_GET['action'] == 'billet') {
 
-                    addPost();
-                    isUserConnected();
+                    $this->ctrlPost->addPost();
+                    $this->ctrlConnect->isUserConnected();
                 }
 
             } else {

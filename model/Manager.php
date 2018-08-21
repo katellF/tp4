@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Blog\Model;
 
-class Manager
+abstract class Manager
 {
     protected function dbConnect()
     {

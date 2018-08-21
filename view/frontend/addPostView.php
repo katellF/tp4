@@ -21,4 +21,4 @@ $this->title = 'Billet';
 </form>
 
 
-var_dump($_SESSION);;?>
+
