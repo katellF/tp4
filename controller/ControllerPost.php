@@ -36,8 +36,8 @@ class ControllerPost
 
    public function post()
     {
-        $this->postManager->getPost($_GET['id']);
-        $this->commentManager->getComments($_GET['id']);
+       $post = $this->postManager->getPost($_GET['id']);
+       $comments = $this->commentManager->getComments($_GET['id']);
 
         require('view/frontend/postView.php');
     }
