@@ -4,9 +4,7 @@ require_once("model/Manager.php");
 
 class UserManager extends Manager
 {
-    function getUser(){
-
-        var_dump($_POST);
+    public function getUser(){
 
         $db = $this->dbConnect();
 
@@ -18,9 +16,7 @@ class UserManager extends Manager
         return $req;
     }
 
-    function registerUser(){
-
-        var_dump($_POST);
+    public function registerUser(){
 
         $db = $this->dbConnect();
 
@@ -34,15 +30,11 @@ class UserManager extends Manager
             'pass' => $pass_hache,
             'email' => $_POST['email']));
 
-        var_dump($res);
-
         echo'Bienvenue chez nous';
         exit;
     }
 
-    function connectionAuto(){
-
-        var_dump($_POST);
+    public function connectionAuto(){
 
         $db = $this->dbConnect();
 
@@ -60,7 +52,7 @@ class UserManager extends Manager
         return $resultat;
     }
 
-    function userConnect(){
+    public function userConnect(){
 
         $db = $this->dbConnect();
 
@@ -69,15 +61,11 @@ class UserManager extends Manager
             'pseudo' => $_POST['pseudo'],
         ));
 
-        var_dump($res);
-
         $resultat = $req->fetch();
         return $resultat;
     }
 
-    function getLogout(){
-
-        var_dump($_SESSION);
+    public function getLogout(){
 
         // Suppression des variables de session et de la session
         $_SESSION = array();
@@ -87,7 +75,4 @@ class UserManager extends Manager
         setcookie('pseudo', '');
         setcookie('pass', '');
     }
-
-
-
 }

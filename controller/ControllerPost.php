@@ -9,45 +9,45 @@ require_once('view/frontend/View.php');
 use \OpenClassrooms\Blog\Model\PostManager;
 use \OpenClassrooms\Blog\Model\CommentManager;
 
+
+
 class ControllerPost
 {
+    private $commentManager;
+    private $postManager;
+    private $ctrlConnect;
 
 // Chargement des classes
 
     public function __construct()
     {
+        $this->commentManager = new CommentManager();
+        $this->postManager = new PostManager();
         $this->ctrlConnect = new ControllerConnect();
-
     }
 
-
-    function listPosts()
+    public function listPosts()
     {
-        $postManager = new PostManager(); // Création d'un objet
-        $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
-
+        $posts = $this->postManager->getPosts(); // Appel d'une fonction de cet objet
 
         require('view/frontend/listPostsView.php');
     }
 
-    function post()
+   public function post()
     {
-        $postManager = new PostManager();
-        $commentManager = new CommentManager();
-
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
+        $this->postManager->getPost($_GET['id']);
+        $this->commentManager->getComments($_GET['id']);
 
         require('view/frontend/postView.php');
     }
 
-    function addPost()
+   public function addPost()
     {
         if (isset ($_POST) && !empty($_POST)) {
             if($this->ctrlConnect->isUserConnected()) {
-                $postManager = new PostManager();
-                $postManager->insertPost();
+
+                $this->postManager->insertPost();
             }
             else{
 
