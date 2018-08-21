@@ -1,8 +1,8 @@
 <?php
 
-$this->title = 'Se déconnecter';
+$title = 'Se déconnecter';
 ?>
-
+<?php ob_start(); ?>
 
     <form method="post" action="index.php?action=logout">
 
@@ -12,3 +12,8 @@ $this->title = 'Se déconnecter';
         </p>
 
     </form>
+
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

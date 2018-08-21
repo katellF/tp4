@@ -1,11 +1,15 @@
-<?php $this->title = 'Mon blog';
+<?php $title = 'Mon blog';
 
 session_start();
-var_dump($this);
+
 ?>
+
+
+<?php ob_start(); ?>
 
     <h1>Mon super blog !</h1>
     <p>Derniers billets du blog :</p>
+
 
 <?php
 while ($data = $posts->fetch())
@@ -27,7 +31,7 @@ while ($data = $posts->fetch())
 }
 $posts->closeCursor();
 
-if (  $this->ctrlConnect->isUserConnected() ) {
+if ( isUserConnected() ) {
 ?>
     <div>
         <a href="index.php?action=billet">Ecrivez un article</a>
@@ -46,3 +50,12 @@ if (  $this->ctrlConnect->isUserConnected() ) {
     }
     ?>
 
+
+
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php');
+
+
+?>

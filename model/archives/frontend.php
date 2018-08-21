@@ -74,6 +74,8 @@ function userConnect(){
 
 function getLogout(){
 
+    var_dump($_SESSION);
+
     // Suppression des variables de session et de la session
     $_SESSION = array();
     session_destroy();
@@ -81,6 +83,18 @@ function getLogout(){
     // Suppression des cookies de connexion automatique
     setcookie('pseudo', '');
     setcookie('pass', '');
+}
+
+ function insertPost()
+{
+    $db = dbConnect();
+    $post = $db->prepare('INSERT INTO posts(id, title, content, creation_date) VALUES(?, :title, :content, NOW())');
+    $affectedLines = $post->execute(array(
+        'title' => $_POST['title'],
+        'content' => $_POST['content'],
+    ));
+
+    return $affectedLines;
 }
 
 function dbConnect()

@@ -1,7 +1,7 @@
 
 <?php
 
-$this->title = 'Se connecter';
+$title = 'Se connecter';
 ?>
 
 

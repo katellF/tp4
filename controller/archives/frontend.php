@@ -14,6 +14,8 @@ function listPosts()
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
+
+
     require('view/frontend/listPostsView.php');
 }
 
@@ -38,10 +40,24 @@ function addComment($postId, $author, $comment)
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: controleurRegistration.php?action=post&id=' . $postId);
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }
 
+function addPost()
+{
+    if (isset ($_POST) && !empty($_POST)) {
+       if(isUserConnected()) {
+           insertPost();
+       }
+       else{
+
+           throw new Exception('Vous n avez pas acces à cette page!');
+       }
+    }
+
+    require('view/frontend/addPostView.php');
+}
 function registration(){
 
     if ( isset ($_POST) && !empty($_POST)){
@@ -157,6 +173,7 @@ require('view/frontend/connectionView.php');
 
 function logout(){
 
+    session_start();
     var_dump($_SESSION);
 
     if ( isset( $_POST['action'] ) && $_POST['action'] === "logout" )
@@ -172,12 +189,22 @@ function logout(){
 
     if (empty($_SESSION))
     {
-        echo'Aurevoir et à bientôt! ';
+        echo'Au revoir et à bientôt! ';
 
     } else
     {
         require('view/frontend/logoutView.php');
     }
 }
+ function isUserConnected(){
 
+    if ( isset($_SESSION) && isset($_SESSION['pseudo'])){
+
+        echo'Vous êtes connectés '.$_SESSION['pseudo'].'!';
+
+        return true;
+    } else {
+        return false;
+    }
+ }
 

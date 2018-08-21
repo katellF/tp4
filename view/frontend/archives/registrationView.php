@@ -7,7 +7,7 @@ if ( isset ($_POST) && empty($_POST)){
 ?>
 
 <?php
-     $this->title = 'Inscription';
+     $title = 'Inscription';
 ?>
 
 
