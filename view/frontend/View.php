@@ -11,13 +11,12 @@ class View
     }
 
     public function generate($datas) {
-        var_dump($datas);
-        var_dump($this->file);
+
         // Génération de la partie spécifique de la vue
         $content = $this->generateFile($this->file, $datas);
         // Génération du template commun utilisant la partie spécifique
         $view = $this->generateFile('view/frontend/template.php',
-            array('titre' => $this->title, 'content' => $content));
+            array('title' => $this->title, 'content' => $content));
         // Renvoi de la vue au navigateur
         echo $view;
     }

@@ -64,7 +64,8 @@ class ControllerConnect
 
         } else {
 
-            require('view/frontend/registrationView.php');
+           $view = new View("registration");
+           $view->generate(array());
 
         }
     }
@@ -75,7 +76,7 @@ class ControllerConnect
 
             echo $_COOKIE['pseudo'] .'     '. $_COOKIE['pass'].'<br><br>';
 
-//$resultat = $req->fetch();
+
             if( $this->UserConnect->connectionAuto() == true){
 
                 echo"Vous etes connectés";
@@ -123,7 +124,8 @@ class ControllerConnect
             }
         }
 
-        require('view/frontend/connectionView.php');
+        $view = new View("connection");
+        $view->generate(array());
 
 
     }
@@ -149,7 +151,8 @@ class ControllerConnect
 
         } else
         {
-            require('view/frontend/logoutView.php');
+            $view = new View("logout");
+            $view->generate(array());
         }
     }
     function isUserConnected(){

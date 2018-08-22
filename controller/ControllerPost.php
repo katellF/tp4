@@ -40,8 +40,9 @@ class ControllerPost
     {
        $post = $this->postManager->getPost($_GET['id']);
        $comments = $this->commentManager->getComments($_GET['id']);
+        $view = new View("post");
+        $view->generate(array('post' => $post, 'comments' => $comments));
 
-       // require('view/frontend/postView.php');
     }
 
    public function addPost()
@@ -51,15 +52,25 @@ class ControllerPost
         if (isset ($_POST) && !empty($_POST)) {
             if( $this->ctrlConnect->isUserConnected() ) {
 
-                $this->postManager->insertPost();
+               $addPost =$this->postManager->insertPost();
+               $view = new View("addPost");
+               $view->generate(array('addPost' => $addPost));
             }
             else{
 
                 throw new Exception('Vous n avez pas acces à cette page!');
             }
+        } else {
+
+            $view = new View("addPost");
+            $view->generate(array());
+
+           // require('view/frontend/addPostView.php');
+
         }
 
-       // require('view/frontend/addPostView.php');
+
+
     }
 
 }

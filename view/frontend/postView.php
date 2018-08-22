@@ -20,6 +20,7 @@ session_start();
 <h2>Commentaires</h2>
 
 <?php
+
 while ($comment = $comments->fetch())
 {
     ?>
