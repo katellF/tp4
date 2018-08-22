@@ -1,3 +1,46 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    color: black;
+    background: grey;
+    font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    color: white;
+}
+
+.titreBillet {
+    margin-bottom : 0px;
+}
+
+#global {
+    min-height: 100%;  /* Voir commentaire sur html et body plus haut */
+    background: #333534;
+    width: 70%;
+    margin: auto;	/* Permet de centrer la div */
+    text-align: justify;
+    padding: 5px 20px;
+}
+
+#contenu {
+    margin-bottom : 30px;
+}
+
+#titreBlog, #piedBlog {
+    text-align: center;
+}
+
+#titreReponses {
+    font-size : 100%;
+}
+
+#txtCommentaire {
+    width: 50%;
+}
+
 h1, h3
 {
     text-align:center;

@@ -31,7 +31,9 @@ class ControllerPost
 
         $posts = $this->postManager->getPosts(); // Appel d'une fonction de cet objet
 
-        require('view/frontend/listPostsView.php');
+        $view = new View("listPosts");
+        $view->generate(array('posts' => $posts));
+       // require('view/frontend/listPostsView.php');
     }
 
    public function post()
@@ -39,13 +41,12 @@ class ControllerPost
        $post = $this->postManager->getPost($_GET['id']);
        $comments = $this->commentManager->getComments($_GET['id']);
 
-        require('view/frontend/postView.php');
+       // require('view/frontend/postView.php');
     }
 
    public function addPost()
     {
         session_start();
-        var_dump($_SESSION);
 
         if (isset ($_POST) && !empty($_POST)) {
             if( $this->ctrlConnect->isUserConnected() ) {
@@ -58,7 +59,7 @@ class ControllerPost
             }
         }
 
-        require('view/frontend/addPostView.php');
+       // require('view/frontend/addPostView.php');
     }
 
 }

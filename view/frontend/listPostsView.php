@@ -1,7 +1,7 @@
 <?php $this->title = 'Mon blog';
 
 session_start();
-var_dump($_SESSION);
+
 
 ?>
 
@@ -27,11 +27,15 @@ while ($data = $posts->fetch())
     <?php
 }
 $posts->closeCursor();
-
+$this->ctrlConnect = new ControllerConnect();
 if (  $this->ctrlConnect->isUserConnected() ) {
-?>
+    ?>
     <div>
         <a href="index.php?action=billet">Ecrivez un article</a>
+    </div>
+    </br>
+    <div>
+        <a href="index.php?action=logout">Se déconnecter</a>
     </div>
 <?php
     } else {

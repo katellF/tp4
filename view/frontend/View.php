@@ -11,6 +11,8 @@ class View
     }
 
     public function generate($datas) {
+        var_dump($datas);
+        var_dump($this->file);
         // Génération de la partie spécifique de la vue
         $content = $this->generateFile($this->file, $datas);
         // Génération du template commun utilisant la partie spécifique
@@ -21,7 +23,7 @@ class View
     }
 
     // Génère un fichier vue et renvoie le résultat produit
-    private function genererFichier($file, $datas) {
+    private function generateFile($file, $datas) {
         if (file_exists($file)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($datas);
