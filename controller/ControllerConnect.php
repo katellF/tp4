@@ -154,9 +154,6 @@ class ControllerConnect
     }
     function isUserConnected(){
 
-        var_dump($_SESSION);
-        var_dump($_POST);
-
         if ( isset($_SESSION) && isset($_SESSION['pseudo'])){
 
             echo'Vous êtes connectés '.$_SESSION['pseudo'].'!';

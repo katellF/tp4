@@ -2,7 +2,7 @@
 
 
 $this->title = 'Billet';
-//session_start();
+
 ?>
 
 

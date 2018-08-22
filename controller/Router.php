@@ -35,8 +35,8 @@ class Router
                     $this->ctrlConnect->logout();
                     $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'listPosts') {
-                    $this->ctrlConnect->listPosts();
-                    $this->ctrlConnect->isUserConnected();
+                    $this->ctrlPost->listPosts();
+                   // $this->ctrlConnect->isUserConnected();
                 } elseif ($_GET['action'] == 'post') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         $this->ctrlPost->post();
@@ -66,7 +66,7 @@ class Router
 
             } else {
                 $this->ctrlPost->listPosts();
-                $this->ctrlConnect->isUserConnected();
+               // $this->ctrlConnect->isUserConnected();
             }
 
         } catch (Exception $e) {
