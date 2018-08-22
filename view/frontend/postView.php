@@ -48,3 +48,9 @@ while ($comment = $comments->fetch())
 </form>
 
 <!-- ... -->
+
+
+<?php
+
+var_dump($_SESSION);
+?>

@@ -1,7 +1,8 @@
 <?php
 
-session_start();
+
 $this->title = 'Billet';
+//session_start();
 ?>
 
 

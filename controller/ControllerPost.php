@@ -44,8 +44,11 @@ class ControllerPost
 
    public function addPost()
     {
+        session_start();
+        var_dump($_SESSION);
+
         if (isset ($_POST) && !empty($_POST)) {
-            if($this->ctrlConnect->isUserConnected()) {
+            if( $this->ctrlConnect->isUserConnected() ) {
 
                 $this->postManager->insertPost();
             }
